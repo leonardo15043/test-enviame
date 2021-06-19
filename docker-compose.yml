@@ -1,0 +1,25 @@
+
+version: '3'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql_data
+    environment:
+      MYSQL_DATABASE: db_prueba
+      MYSQL_USER: leonardo
+      MYSQL_PASSWORD: 2020
+      MYSQL_ROOT_PASSWORD: root2020
+    ports:
+      - "9000:3306"
+  web:
+    image: php:7.2.2-apache
+    container_name: php_app
+    depends_on:
+      - db
+    volumes:
+      - ./app/:/var/www/html/
+    ports:
+      - "81:80"
+    stdin_open: true
+    tty: true
