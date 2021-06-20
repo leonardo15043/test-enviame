@@ -1,0 +1,4 @@
+RewriteEngine On  
+RewriteRule ^company$ company.php [NC,L]
+RewriteRule ^company/([a-z_-]*)$ company.php?action=$1 [NC,L]
+RewriteRule ^company/([a-z_-]*)/([0-9_-]*)$ company.php?action=$1&id=$2 [NC,L]

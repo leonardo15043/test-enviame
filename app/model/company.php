@@ -19,12 +19,16 @@ class Company{
     public function addCompany($company){
         $result = array($company['name'],$company['nit'],$company['email']);
 		$stm = $this->pdo->prepare("INSERT INTO company (name,nit,email) VALUES (?, ?, ?)");	
-	    $stm->execute($result); 
+	    if($stm->execute($result)){
+            return true;
+        };
     }
 
     public function deleteCompany($id){
         $stm = $this->pdo->prepare("DELETE FROM company WHERE id_company = ?");			          
-        $stm->execute(array($id));
+        if($stm->execute(array($id))){
+            return true;
+        };
     }
 
     public function getCompany($id){	
@@ -36,7 +40,9 @@ class Company{
     public function editCompany($company){
         $result = array($company['name'],$company['nit'],$company['email'],$company['id_company']);
 		$stm = $this->pdo->prepare("UPDATE  company SET name = ?,nit = ?,email = ? WHERE id_company = ?");	
-	    $stm->execute($result); 
+	    if($stm->execute($result)){
+            return true;
+        };
     }
     
 
