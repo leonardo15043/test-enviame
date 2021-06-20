@@ -42,8 +42,4 @@ switch ($_GET['action']) {
             $api->fakeData();
         }       
         break;
-
-    default:
-        $api->getAllCompanies();
-        break;
 }
