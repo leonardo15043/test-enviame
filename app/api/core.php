@@ -1,5 +1,6 @@
 <?php
 require_once 'company.php';
+require_once '../vendor/fzaninotto/faker/src/autoload.php';
 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
@@ -35,6 +36,13 @@ switch ($_GET['action']) {
         $id = $_GET['id'];
         $api->deleteCompany($id);
         break;
+    case 'fake':
+        $number = $_GET['id'];
+        for ($i=0; $i < $number; $i++) { 
+            $api->fakeData();
+        }       
+        break;
+
     default:
         $api->getAllCompanies();
         break;

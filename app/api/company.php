@@ -53,4 +53,20 @@ class CompanyApiController{
         }
     }
 
+    public function fakeData(){
+        $faker = Faker\Factory::create('es_ES');
+
+        $data['name'] = $faker->company();
+        $data['email'] = $faker->email();
+        $data['nit'] = $faker->dni();
+
+        if($this->model->addCompany($data)){         
+            http_response_code(201);         
+            echo json_encode(array("message" => "Item creado correctamente."));
+        } else{         
+            http_response_code(503);        
+            echo json_encode(array("message" => "No se pudo crear el item."));
+        }
+    }
+
 }
