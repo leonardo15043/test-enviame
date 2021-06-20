@@ -4,7 +4,7 @@ version: '3'
 services:
   db:
     image: mysql:5.7
-    container_name: mysql_data
+    container_name: mysql_db
     environment:
       MYSQL_DATABASE: db_prueba
       MYSQL_USER: leonardo
@@ -12,9 +12,11 @@ services:
       MYSQL_ROOT_PASSWORD: root2020
     ports:
       - "9000:3306"
+    volumes:
+      - ./db/:/var/lib/mysql
   web:
     image: php:7.2.2-apache
-    container_name: php_app
+    container_name: php_web
     depends_on:
       - db
     volumes:
