@@ -1,9 +1,9 @@
 <?php
 require_once '../controller/company.php';
-$com = new companyController();
+$com = new CompanyController();
 
 if(isset($_GET['id_delete'])){
-    $users->delete($_GET['id_delete']);
+    $com->delete($_GET['id_delete']);
 }
 
 ?>
@@ -19,6 +19,7 @@ if(isset($_GET['id_delete'])){
 
 <div class="container mt-5">
     <h1>Lista de Empresas</h1>
+    <a class="btn btn-primary" href="create.php" role="button">Crear Empresa</a>
     <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -32,11 +33,15 @@ if(isset($_GET['id_delete'])){
         <?php
             foreach($com->getAllCompanies() as $company ){
         ?>
-        <tr class="user-<?php echo $company->id_company; ?>">
+        <tr class="company-<?php echo $company->id_company; ?>">
             <th scope="row"><?php echo $company->id_company; ?></th>
             <td><?php echo $company->name; ?></td>
             <td><?php echo $company->nit; ?></td>
             <td><?php echo $company->email; ?></td>
+            <td>
+            <button type="button" class="btn btn-primary" onclick="window.location.href = 'edit.php?id_company=<?php echo $company->id_company; ?>'">Editar</button>
+            <button type="button" class="btn btn-danger" onclick="deleteCompany(<?php echo $company->id_company; ?>)">Eliminar</button>
+            </td>
         </tr>
         <?php
             }
@@ -45,7 +50,18 @@ if(isset($_GET['id_delete'])){
     </tbody>
     </table>
 </div>
-
+<script>
+function deleteCompany(id){
+    $('.company-'+id).hide();
+    console.log(id);
+    $.ajax({
+            url: "?id_delete="+id,
+            type: 'GET',
+            success: function (result) {
+            }
+        });
+}
+</script>
 </body>
 
 </html>

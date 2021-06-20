@@ -1,7 +1,7 @@
 <?php
 require_once '../model/company.php';
 
-class companyController{
+class CompanyController{
 
     private $model;
     
@@ -10,11 +10,24 @@ class companyController{
     }
 
     public function getAllCompanies(){
-
-        $data = new Company();
-        $data = $this->model->getAll();
-        
+        $data = $this->model->getAll(); 
         return $data;
     }
+
+    public function addCompany($company){
+        $this->model->addCompany($company);
+    }
     
+    public function delete($id){
+        $this->model->deleteCompany($id);
+    }
+
+    public function getCompany($id){
+        return $this->model->getCompany($id);
+    }
+
+    public function editCompany($company){
+        $this->model->editCompany($company);
+    }
+
 }
