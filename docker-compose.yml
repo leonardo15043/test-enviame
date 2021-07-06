@@ -14,9 +14,17 @@ services:
       - "9000:3306"
     volumes:
       - ./db/:/var/lib/mysql
+    networks: 
+      web_host:
+        aliases:
+          - mysql_host
   web:
-    image: php:7.2.2-apache
+    build:
+      context: ./
+      dockerfile: DockerFile
+    #image: php:7.2.2-apache
     container_name: php_web
+    restart: always
     depends_on:
       - db
     volumes:
@@ -25,3 +33,15 @@ services:
       - "81:80"
     stdin_open: true
     tty: true
+    networks: 
+      web_host:
+        aliases:
+          - php_host
+   
+
+networks:
+  web_host:
+        name: network_web
+        driver: bridge
+        ipam:
+            driver: default
