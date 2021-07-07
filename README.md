@@ -14,7 +14,7 @@ La información de la base de datos se guarda en la carpeta db, no es recomendab
 
 Luego de clonar el repositorio y tener los archivos localmente debemos asegurarnos de tener [Docker Desktop](https://www.docker.com/products/docker-desktop) en nuestra computadora y luego desde la terminal de comando vamos a la carpeta del proyecto y ejecutamos el siguiente comando.
 
-``` docker-compose up -d ``` este comando ejecutará toda la configuración que tenemos en el **docker-compose.yml**.
+``` docker-compose up -d ``` este comando ejecutará toda la configuración que tenemos en el **docker-compose.yml**, despues debemos asegurarnos de tener instalado **Composer** y ejecutamos el comando  ``` composer install ``` para insatlar la libreria de [fzaninotto/Faker](fzaninotto/Faker)
 
 ### Ejercicio 2: API REST + CRUD
 
